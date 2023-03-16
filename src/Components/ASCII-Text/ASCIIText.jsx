@@ -1,29 +1,44 @@
 import { useEffect, useState } from "react";
 import figlet from "figlet";
 import TextFader from "./fader";
-import standard from "figlet/importable-fonts/Slant";
 
-const ASCIIText = ({ message = "REPLACE ME", colors = "ff0000" }) => {
+const ASCIIText = ({
+  message = "REPLACE ME",
+  font = "Standard",
+  colors = "ff0000",
+  fadeType = "vertical",
+}) => {
   const [output, setOutput] = useState("");
   const [final, setFinal] = useState("");
-
-  console.log(message);
+  const [loadedFont, setLoadedFont] = useState(null);
 
   useEffect(() => {
-    figlet.parseFont("Standard", standard);
-    figlet.text(message, { font: "Standard" }, (err, data) => {
-      if (err) {
-        console.log("Oh no");
-      }
-      setOutput(data);
-    });
+    loadFont();
   }, []);
+
+  const loadFont = async () => {
+    await import(`../../../node_modules/figlet/importable-fonts/${font}.js`)
+      .then((res) => res.default)
+      .then((flt) => setLoadedFont(flt));
+  };
+
+  useEffect(() => {
+    if (loadedFont) {
+      figlet.parseFont("Standard", loadedFont);
+      figlet.text(message, { font: "Standard" }, (err, data) => {
+        if (err) {
+          console.log("Oh no");
+        }
+        setOutput(data);
+      });
+    }
+  }, [loadedFont]);
 
   useEffect(() => {
     const config = {
       colors: colors, // ["#fb6630", "#ff748d", "#c554f3", "#6f6ff4"]
       txt: output,
-      type: "vertical",
+      type: fadeType,
       output: "html-font",
     };
     setFinal(TextFader.fade(config));
