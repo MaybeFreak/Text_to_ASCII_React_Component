@@ -2,7 +2,7 @@
 
 <img src="https://cdn.discordapp.com/attachments/142745451207065600/1111618318743380058/image.png" />
 <br/>
-Ever wanted to recreate the retro feel of the Late 90s and early 2000s or are you just looking for a little something to spice up that boring page ? <br/>
+Ever wanted to recreate the retro feel of the late 90s and early 2000s or are you looking for a little something to spice up that boring page? <br/>
 If so you have come to the right place, this 'simple' react component combines the <a href="https://www.npmjs.com/package/figlet" alt="Link to figlet npm package" >figlet package</a> together with a text fader script 
 from <a href="https://patorjk.com/text-color-fader/" alt="Link to patorjk.com" >patorjk</a> to achieve impressive looking result in a slim and easy to use package.<br/>
 <br/>
