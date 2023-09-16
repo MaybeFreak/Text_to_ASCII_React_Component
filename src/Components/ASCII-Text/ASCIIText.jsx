@@ -5,7 +5,7 @@ import TextFader from "./fader";
 const ASCIIText = ({
   message = "REPLACE ME",
   font = "Standard",
-  colors = "ff0000",
+  colors = ["#00ff00"],
   fadeType = "vertical",
 }) => {
   const [output, setOutput] = useState("");
@@ -36,7 +36,7 @@ const ASCIIText = ({
 
   useEffect(() => {
     const config = {
-      colors: colors, // ["#fb6630", "#ff748d", "#c554f3", "#6f6ff4"]
+      colors: colors.length === 1 ? [colors[0], colors[0]] : colors, // ["#fb6630", "#ff748d", "#c554f3", "#6f6ff4"]
       txt: output,
       type: fadeType,
       output: "html-font",
