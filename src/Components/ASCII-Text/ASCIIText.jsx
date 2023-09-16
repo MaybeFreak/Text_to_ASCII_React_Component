@@ -7,6 +7,7 @@ const ASCIIText = ({
   font = "Standard",
   colors = ["#00ff00"],
   fadeType = "vertical",
+  htmlClassname = "asciiTextComp",
 }) => {
   const [output, setOutput] = useState("");
   const [final, setFinal] = useState("");
@@ -46,7 +47,10 @@ const ASCIIText = ({
 
   return (
     <>
-      <div dangerouslySetInnerHTML={{ __html: final }}></div>
+      <div
+        className={htmlClassname}
+        dangerouslySetInnerHTML={{ __html: final }}
+      ></div>
     </>
   );
 };
